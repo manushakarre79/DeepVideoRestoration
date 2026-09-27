@@ -182,23 +182,23 @@ http://127.0.0.1:8000/
 ---
 
 ##🚀 Advantages
-User-friendly Django interface
-Uses pre-trained deep learning models
-Does not require model training from scratch
-Supports image and video processing
-Frame-wise video processing
-Suitable for practical deployment
-Includes user registration and login
+-User-friendly Django interface
+-Uses pre-trained deep learning models
+-Does not require model training from scratch
+-Supports image and video processing
+-Frame-wise video processing
+-Suitable for practical deployment
+-Includes user registration and login
 
 
 ##🔮 Future Scope
-Real-time video restoration
-Improved temporal consistency
-Advanced attention mechanisms
-GPU acceleration
-Higher-quality restoration
-Cloud-based processing
-Mobile application support
+-Real-time video restoration
+-Improved temporal consistency
+-Advanced attention mechanisms
+-GPU acceleration
+-Higher-quality restoration
+-Cloud-based processing
+-Mobile application support
 
 ##👩‍💻 Author
 
