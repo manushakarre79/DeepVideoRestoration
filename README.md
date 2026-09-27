@@ -180,7 +180,7 @@ Open:
 http://127.0.0.1:8000/
 ---
 
-🚀 Advantages
+##🚀 Advantages
 User-friendly Django interface
 Uses pre-trained deep learning models
 Does not require model training from scratch
@@ -189,7 +189,8 @@ Frame-wise video processing
 Suitable for practical deployment
 Includes user registration and login
 
-🔮 Future Scope
+
+##🔮 Future Scope
 Real-time video restoration
 Improved temporal consistency
 Advanced attention mechanisms
