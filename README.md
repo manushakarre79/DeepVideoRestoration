@@ -1,117 +1,203 @@
-# DeepRestore – AI Video Restoration
+# Deep Learning Framework for Intelligent Video Restoration, Enhancement and Visual Reconstruction for Degraded Videos
 
 ## 📌 Project Overview
 
-DeepRestore is an AI-based web platform designed to restore, enhance, and
-colorize degraded images and videos.
+DeepVideoRestoration is an AI-powered web-based application designed to
+restore and enhance degraded videos and colorize grayscale images and
+videos.
 
-The system uses deep learning and computer vision techniques to process
-grayscale images and video frames and generate enhanced visual results.
-
-The project provides a user-friendly Django web interface where users can
-register, log in, upload media, process visual content, and access the
-restored output.
+The system uses a Django-based web interface with Python, OpenCV and
+pre-trained deep learning models to process uploaded media.
 
 ---
 
 ## 🎯 Objectives
 
-- Restore degraded visual media
-- Colorize grayscale and black-and-white images
-- Enhance the visual quality of video frames
-- Process video frames using computer vision
-- Provide a simple web-based interface
-- Allow users to download processed results
+- Restore degraded visual content
+- Convert grayscale images and videos into color
+- Enhance video quality
+- Provide an easy-to-use web interface
+- Process video frame-by-frame
+- Allow users to upload and download processed media
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-### 🎨 AI Image Colorization
-Convert grayscale or black-and-white images into color using a
-pre-trained deep learning colorization model.
-
-### 🎬 Video Restoration
-Process video frames individually and generate an enhanced video output.
-
-### ✨ Visual Enhancement
-Improve the visual appearance and clarity of degraded media.
-
-### 🧠 AI Color Prediction
-Use a pre-trained deep learning model to predict suitable colors from
-grayscale image information.
-
-### ⚙️ Frame Processing
-Extract and process individual video frames using OpenCV.
-
-### 📥 Download Results
-Save and access the restored media after processing.
-
-### 🔐 User Authentication
-The platform provides:
-
-- User Registration
-- User Login
-- User Logout
-
-### 📩 Contact / Issue Support
-Users can describe problems related to:
-
-- Video Upload
-- Image Colorization
-- Video Processing
-- Download
-- Other technical issues
+- 🖼️ Image Colorization
+- 🎥 Video Colorization
+- 🤖 AI-based Processing
+- 🔐 User Registration and Login
+- 📤 Image/Video Upload
+- 📥 Processed File Download
+- 🌐 Django Web Interface
+- ⚡ OpenCV-based Frame Processing
+- 🎨 Automatic Color Enhancement
 
 ---
 
-## 🛠️ Technologies Used
+## 🧠 Technologies Used
 
+| Technology | Purpose |
+|---|---|
+| Python | Backend and AI processing |
+| Django | Web application |
+| OpenCV | Image and video processing |
+| NumPy | Numerical processing |
+| Caffe | Pre-trained colorization model |
+| CNN | Image colorization |
+| SQLite | Database |
+| HTML | Web interface |
+| CSS | Website styling |
+| JavaScript | Frontend interaction |
+
+---
+
+## 🏗️ System Architecture
+
+User
+↓
+Django Web Interface
+↓
+Upload Image / Video
+↓
+OpenCV Processing
+↓
+Pre-trained Caffe CNN
+↓
+Frame-by-Frame Colorization
+↓
+Enhanced Output
+↓
+Download Result
+
+---
+
+## 🔄 Workflow
+
+1. User registers or logs into the system.
+2. User uploads an image or video.
+3. The system reads the uploaded media.
+4. Grayscale frames are extracted from the video.
+5. The pre-trained deep learning model processes the frames.
+6. Color information is predicted.
+7. The processed frames are reconstructed into a video.
+8. The final output is made available to the user.
+
+---
+
+## 🧮 Algorithms
+
+### CNN Colorization
+Used to predict color information from grayscale images.
+
+### ResNet
+Used for deep feature extraction.
+
+### GAN
+Can be used to generate realistic colorized results.
+
+### Caffe Pre-trained Model
+Used for practical image colorization without training a model from scratch.
+
+### CIELAB Color Space
+Used for separating lightness from color information.
+
+### OpenCV
+Used for image and video processing.
+
+---
+
+## 📁 Project Structure
+
+DeepVideoRestoration/
+
+└── video_restoration/
+
+    ├── colorizer/
+
+    ├── restoration_app/
+
+    ├── static/
+
+    │   ├── css/
+
+    │   └── js/
+
+    ├── templates/
+
+    ├── video_restoration/
+
+    ├── manage.py
+
+    └── README.md
+
+---
+
+## 💻 System Requirements
+
+### Hardware
+
+- Intel Core i7 processor
+- 8 GB RAM
+- 512 GB storage
+- Keyboard and mouse
+
+### Software
+
+- Windows 10 or later
 - Python
 - Django
 - OpenCV
 - NumPy
-- Caffe
-- Deep Learning
-- Computer Vision
-- HTML
-- CSS
-- JavaScript
+- Pandas
+- Scikit-learn
+- VS Code / PyCharm
 - SQLite
 
 ---
 
-## 🧠 Algorithms and Techniques
+## ⚙️ Installation
 
-The project uses the following techniques:
+Clone the repository:
 
-- Convolutional Neural Networks (CNN)
-- Pre-trained Caffe Colorization Model
-- OpenCV `cv2.dnn`
-- CIELAB Color Space
-- Frame-Based Video Processing
-- Deep Learning-Based Color Prediction
-- Computer Vision
+```bash
+git clone https://github.com/manushakarre79/DeepVideoRestoration.git
 
----
+Go to the project directory:
+cd DeepVideoRestoration/video_restoration
 
-## 🏗️ System Workflow
+Install dependencies:
+pip install django opencv-python numpy pandas scikit-learn
 
-```text
-User
-  ↓
-Register / Login
-  ↓
-Upload Image or Video
-  ↓
-Analyze Input
-  ↓
-AI-Based Processing
-  ↓
-Frame Processing
-  ↓
-Colorization / Enhancement
-  ↓
-Generate Restored Output
-  ↓
-Download Result
+Run migrations:
+python manage.py migrate
+
+Start the server:
+python manage.py runserver
+
+Open:
+http://127.0.0.1:8000/
+
+🚀 Advantages
+User-friendly Django interface
+Uses pre-trained deep learning models
+Does not require model training from scratch
+Supports image and video processing
+Frame-wise video processing
+Suitable for practical deployment
+Includes user registration and login
+
+🔮 Future Scope
+Real-time video restoration
+Improved temporal consistency
+Advanced attention mechanisms
+GPU acceleration
+Higher-quality restoration
+Cloud-based processing
+Mobile application support
+
+👩‍💻 Author
+
+Karre Manusha
+B.Tech – Computer Science and Engineering
