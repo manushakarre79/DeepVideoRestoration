@@ -1,0 +1,940 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeepRestore | AI Video Restoration</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= BACKGROUND EFFECTS ================= -->
+
+<div class="background-effects">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="glow glow-three"></div>
+
+    <div class="grid-overlay"></div>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{% url 'home' %}" class="logo">
+            <span class="logo-icon">✦</span>
+            <span>Deep<span>Restore</span></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="#home" class="nav-link active">Home</a>
+
+            <a href="#features" class="nav-link">Features</a>
+
+            <a href="#process" class="nav-link">Process</a>
+
+            <a href="#about" class="nav-link">About</a>
+
+            <a href="#contact" class="nav-link">Contact</a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'logout' %}" class="nav-login">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="nav-login">
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}" class="nav-register">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+        <button class="menu-button" id="menuButton">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            AI POWERED VIDEO RESTORATION
+        </div>
+
+        <h1>
+            Bring Old Videos
+            <span>Back to Life.</span>
+        </h1>
+
+        <p class="hero-description">
+            Restore, enhance and colorize degraded videos using
+            intelligent deep learning and computer vision technology.
+        </p>
+
+        <div class="hero-buttons">
+
+            {% if user.is_authenticated %}
+
+                <a href="#features" class="primary-button">
+                    <span>Explore Features</span>
+                    <span class="button-arrow">→</span>
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'register' %}" class="primary-button">
+                    <span>Get Started</span>
+                    <span class="button-arrow">→</span>
+                </a>
+
+                <a href="#features" class="secondary-button">
+                    Explore Features
+                </a>
+
+            {% endif %}
+
+        </div>
+
+        <div class="hero-info">
+
+            <div class="info-item">
+                <strong>AI</strong>
+                <span>Powered</span>
+            </div>
+
+            <div class="info-line"></div>
+
+            <div class="info-item">
+                <strong>HD</strong>
+                <span>Enhancement</span>
+            </div>
+
+            <div class="info-line"></div>
+
+            <div class="info-item">
+                <strong>24/7</strong>
+                <span>Accessible</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Floating visual -->
+
+    <div class="hero-visual">
+
+        <div class="visual-ring ring-one"></div>
+        <div class="visual-ring ring-two"></div>
+
+        <div class="video-card">
+
+            <div class="video-card-top">
+                <div class="window-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <span>AI RESTORATION</span>
+            </div>
+
+            <div class="video-preview">
+
+                <div class="scan-line"></div>
+
+                <div class="video-icon">
+                    ▶
+                </div>
+
+                <div class="preview-label">
+                    <span>PROCESSING</span>
+                    <strong>VIDEO FRAME</strong>
+                </div>
+
+            </div>
+
+            <div class="video-progress">
+
+                <div class="progress-text">
+                    <span>Restoration</span>
+                    <span>94%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="floating-chip chip-one">
+            <span>✦</span>
+            AI Colorization
+        </div>
+
+        <div class="floating-chip chip-two">
+            <span>◉</span>
+            Frame Enhancement
+        </div>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span>SCROLL TO EXPLORE</span>
+
+        <div class="scroll-line">
+            <div></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features-section" id="features">
+
+    <div class="section-heading reveal">
+
+        <div class="small-heading">
+            <span></span>
+            POWERFUL FEATURES
+            <span></span>
+        </div>
+
+        <h2>
+            Everything You Need to
+            <span>Restore Your Videos</span>
+        </h2>
+
+        <p>
+            Advanced image and video restoration capabilities
+            presented through a simple and modern interface.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <!-- Feature 1 -->
+
+        <div class="feature-card reveal"
+             data-title="AI Image Colorization"
+             data-description="Convert grayscale or black-and-white images into color using a pre-trained deep learning colorization model. The system analyzes the image and predicts suitable colors.">
+
+            <div class="feature-number">01</div>
+
+            <div class="feature-icon color-icon">
+                🎨
+            </div>
+
+            <h3>Image Colorization</h3>
+
+            <p>
+                Transform grayscale images into realistic
+                color using AI-powered color prediction.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+
+        <!-- Feature 2 -->
+
+        <div class="feature-card reveal"
+             data-title="Video Restoration"
+             data-description="Upload degraded videos and process their frames using computer vision techniques to create an enhanced restored output.">
+
+            <div class="feature-number">02</div>
+
+            <div class="feature-icon video-icon-box">
+                🎬
+            </div>
+
+            <h3>Video Restoration</h3>
+
+            <p>
+                Process degraded video frames and create
+                an enhanced visual output.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+
+        <!-- Feature 3 -->
+
+        <div class="feature-card reveal"
+             data-title="Visual Enhancement"
+             data-description="Improve the visual appearance of degraded media by processing individual frames through the restoration pipeline.">
+
+            <div class="feature-number">03</div>
+
+            <div class="feature-icon enhance-icon">
+                ✨
+            </div>
+
+            <h3>Visual Enhancement</h3>
+
+            <p>
+                Improve visual quality and bring greater
+                clarity to degraded media.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+
+        <!-- Feature 4 -->
+
+        <div class="feature-card reveal"
+             data-title="AI Color Prediction"
+             data-description="The system uses a pre-trained Caffe deep learning model to predict colors from grayscale image information.">
+
+            <div class="feature-number">04</div>
+
+            <div class="feature-icon ai-icon">
+                🧠
+            </div>
+
+            <h3>AI Color Prediction</h3>
+
+            <p>
+                Intelligent color prediction using a
+                pre-trained deep learning model.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+
+        <!-- Feature 5 -->
+
+        <div class="feature-card reveal"
+             data-title="Frame Processing"
+             data-description="Video frames can be extracted and processed individually using OpenCV and the cv2.dnn module.">
+
+            <div class="feature-number">05</div>
+
+            <div class="feature-icon frame-icon">
+                ⚙
+            </div>
+
+            <h3>Frame Processing</h3>
+
+            <p>
+                Process video frames individually for
+                efficient restoration.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+
+        <!-- Feature 6 -->
+
+        <div class="feature-card reveal"
+             data-title="Download Results"
+             data-description="After processing, the restored output can be saved and made available to the user for download.">
+
+            <div class="feature-number">06</div>
+
+            <div class="feature-icon download-icon">
+                ↓
+            </div>
+
+            <h3>Download Results</h3>
+
+            <p>
+                Save your restored media and access
+                the final output easily.
+            </p>
+
+            <button class="feature-button">
+                Explore Feature →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROCESS ================= -->
+
+<section class="process-section" id="process">
+
+    <div class="process-heading">
+
+        <span class="process-label">✦ HOW IT WORKS</span>
+
+        <h2>
+            From <span>Degraded</span> to Restored
+        </h2>
+
+        <p>
+            A simple AI-powered workflow that transforms
+            degraded visual media into enhanced results.
+        </p>
+
+    </div>
+
+
+    <div class="process-flow">
+
+        <!-- 01 Upload -->
+        <div class="process-card">
+
+            <div class="process-top">
+                <span class="step-number">01</span>
+                <span class="step-status">STEP 01</span>
+            </div>
+
+            <div class="process-icon">📤</div>
+
+            <h3>Upload</h3>
+
+            <p>
+                Upload your degraded image or video
+                to begin the restoration process.
+            </p>
+
+            <div class="process-bottom">
+                <span>INPUT MEDIA</span>
+                <span>→</span>
+            </div>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <!-- 02 Analyze -->
+        <div class="process-card">
+
+            <div class="process-top">
+                <span class="step-number">02</span>
+                <span class="step-status">STEP 02</span>
+            </div>
+
+            <div class="process-icon">🔍</div>
+
+            <h3>Analyze</h3>
+
+            <p>
+                AI analyzes the visual information
+                contained in the uploaded media.
+            </p>
+
+            <div class="process-bottom">
+                <span>AI ANALYSIS</span>
+                <span>→</span>
+            </div>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <!-- 03 Restore -->
+        <div class="process-card">
+
+            <div class="process-top">
+                <span class="step-number">03</span>
+                <span class="step-status">STEP 03</span>
+            </div>
+
+            <div class="process-icon">✨</div>
+
+            <h3>Restore</h3>
+
+            <p>
+                Frames are processed and enhanced
+                using intelligent restoration techniques.
+            </p>
+
+            <div class="process-bottom">
+                <span>AI RESTORATION</span>
+                <span>→</span>
+            </div>
+
+        </div>
+
+
+        <div class="process-arrow">→</div>
+
+
+        <!-- 04 Download -->
+        <div class="process-card">
+
+            <div class="process-top">
+                <span class="step-number">04</span>
+                <span class="step-status">STEP 04</span>
+            </div>
+
+            <div class="process-icon">📥</div>
+
+            <h3>Download</h3>
+
+            <p>
+                Get your restored result and save
+                the enhanced media easily.
+            </p>
+
+            <div class="process-bottom">
+                <span>FINAL OUTPUT</span>
+                <span>✓</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="process-info">
+
+        <div class="info-item">
+            <span>🧠</span>
+
+            <div>
+                <strong>Intelligent Processing</strong>
+                <small>AI-assisted visual analysis</small>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <span>⚡</span>
+
+            <div>
+                <strong>Frame-Based Processing</strong>
+                <small>Efficient video frame processing</small>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <span>🎨</span>
+
+            <div>
+                <strong>Visual Enhancement</strong>
+                <small>Improve degraded visual content</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-section" id="about">
+
+    <div class="about-content reveal">
+
+        <div class="about-label">
+            ABOUT THE PROJECT
+        </div>
+
+        <h2>
+            Intelligent Restoration.
+            <span>Modern Technology.</span>
+        </h2>
+
+        <p>
+            Deep Video Restoration is an AI-based web platform
+            designed to restore and enhance degraded visual media.
+            It combines deep learning and computer vision techniques
+            to process images and video frames.
+        </p>
+
+        <div class="about-tags">
+
+            <span>Deep Learning</span>
+            <span>Computer Vision</span>
+            <span>Python</span>
+            <span>Django</span>
+            <span>OpenCV</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-visual reveal">
+
+        <div class="about-orbit orbit-one"></div>
+        <div class="about-orbit orbit-two"></div>
+
+        <div class="ai-core">
+
+            <div class="core-symbol">
+                AI
+            </div>
+
+            <span>RESTORE</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+</section>
+
+
+<!-- ================= CONTACT / ANY ISSUES ================= -->
+
+<section class="contact-section" id="contact">
+
+    <div class="contact-container">
+
+        <!-- LEFT SIDE -->
+        <div class="contact-info reveal">
+
+            <div class="about-label">
+                NEED HELP?
+            </div>
+
+            <h2>
+                Have Any <span>Issues?</span>
+            </h2>
+
+            <p>
+                Facing a problem with video restoration, image
+                colorization or processing? Let us know about it.
+            </p>
+
+            <div class="contact-item">
+
+                <div class="contact-icon">🎥</div>
+
+                <div>
+                    <strong>Video Restoration</strong>
+                    <span>Problems while processing your video</span>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">🖼️</div>
+
+                <div>
+                    <strong>Image Colorization</strong>
+                    <span>Issues with image enhancement</span>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">⚙️</div>
+
+                <div>
+                    <strong>Technical Issue</strong>
+                    <span>Report a problem with the platform</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="contact-form reveal">
+
+            <div class="small-heading">
+                <span></span>
+                CONTACT SUPPORT
+                <span></span>
+            </div>
+
+            <h3>
+                Tell Us About Your <span>Issue</span>
+            </h3>
+
+            <p>
+                Fill in the details below and describe the issue
+                you are experiencing.
+            </p>
+
+
+            <form>
+
+                <div class="form-group">
+
+                    <label>Your Name</label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Issue Type</label>
+
+                    <select>
+
+                        <option>Select an issue</option>
+                        <option>Video Upload Issue</option>
+                        <option>Image Colorization Issue</option>
+                        <option>Video Processing Issue</option>
+                        <option>Download Issue</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Describe Your Issue</label>
+
+                    <textarea
+                        placeholder="Explain your issue here..."
+                    ></textarea>
+
+                </div>
+
+
+                <button type="submit" class="contact-submit">
+                    Send Message →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+   <section class="cta-section reveal">
+
+    <div class="cta-content">
+
+        <div class="small-heading">
+            <span></span>
+            READY TO RESTORE?
+            <span></span>
+        </div>
+
+        <h2>
+            Bring Your Visuals
+            <span>Back to Life.</span>
+        </h2>
+
+        <p>
+            Experience intelligent video restoration,
+            enhancement and AI-powered colorization.
+        </p>
+
+        {% if user.is_authenticated %}
+
+            <a href="#features" class="primary-button">
+                <span>Explore Features</span>
+                <span class="button-arrow">→</span>
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'register' %}" class="primary-button">
+                <span>Get Started</span>
+                <span class="button-arrow">→</span>
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <span>Deep<span>Restore</span></span>
+            </div>
+
+            <p>
+                Intelligent Video Restoration,
+                Enhancement and Visual Reconstruction.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+
+</div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 DeepRestore
+        </span>
+
+        <span>
+            AI • Computer Vision • Deep Learning
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= FEATURE MODAL ================= -->
+
+<div class="feature-modal" id="featureModal">
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <div class="modal-box">
+
+        <button class="modal-close" id="modalClose">
+            ×
+        </button>
+
+        <div class="modal-icon">
+            ✦
+        </div>
+
+        <div class="modal-label">
+            FEATURE
+        </div>
+
+        <h2 id="modalTitle">
+            Feature
+        </h2>
+
+        <p id="modalDescription">
+            Feature description.
+        </p>
+
+        <button class="modal-button" id="modalAction">
+            Got it →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JavaScript -->
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

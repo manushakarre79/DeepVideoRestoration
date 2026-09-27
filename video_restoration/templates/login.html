@@ -1,0 +1,648 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Deep Video Restoration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.25), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(168, 85, 247, 0.30), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.22), transparent 35%),
+                linear-gradient(135deg, #050816, #0b1026 45%, #130b2b);
+        }
+
+        /* Background glowing circles */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            width: 350px;
+            height: 350px;
+            background: #00e5ff;
+            top: -100px;
+            left: -80px;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: #a855f7;
+            right: -120px;
+            bottom: -120px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(40px, 30px);
+            }
+        }
+
+        /* Navigation */
+        .top-bar {
+            width: 100%;
+            padding: 25px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, #00e5ff, #8b5cf6);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+        }
+
+        .home-link {
+            text-decoration: none;
+            color: #d8def0;
+            padding: 11px 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 30px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .home-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(0,229,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Main */
+        .login-wrapper {
+            min-height: calc(100vh - 95px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px 70px;
+        }
+
+        .login-container {
+            width: min(1050px, 100%);
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+
+            background: rgba(10, 15, 38, 0.65);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 30px;
+            overflow: hidden;
+
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.45),
+                0 0 50px rgba(99,102,241,0.10);
+        }
+
+        /* Left section */
+        .intro-section {
+            padding: 65px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(0,229,255,0.12),
+                    rgba(139,92,246,0.08),
+                    rgba(236,72,153,0.10)
+                );
+        }
+
+        .video-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+
+            background: linear-gradient(135deg, #00e5ff, #8b5cf6);
+            box-shadow:
+                0 0 35px rgba(0,229,255,0.30),
+                0 0 60px rgba(139,92,246,0.15);
+
+            margin-bottom: 28px;
+        }
+
+        .intro-section h1 {
+            font-size: clamp(35px, 4vw, 54px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #7dd3fc,
+                #c084fc,
+                #f9a8d4
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-section p {
+            color: #b7c0d8;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            color: #dce4f5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+
+        /* Login card */
+        .login-section {
+            padding: 60px 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(3, 7, 20, 0.40);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .login-card h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: #9da8c2;
+            font-size: 14px;
+            margin-bottom: 35px;
+        }
+
+        /* Messages */
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px 15px;
+            border-radius: 12px;
+            background: rgba(239,68,68,0.12);
+            border: 1px solid rgba(239,68,68,0.25);
+            color: #fca5a5;
+            font-size: 13px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: #dce4f5;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 15px 45px 15px 16px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 13px;
+
+            background: rgba(255,255,255,0.055);
+            color: white;
+
+            outline: none;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #69748e;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #00d9ff;
+            background: rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 0 0 3px rgba(0,217,255,0.10),
+                0 0 25px rgba(0,217,255,0.10);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            border: none;
+            background: transparent;
+            color: #8c98b3;
+
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .password-toggle:hover {
+            color: #00e5ff;
+        }
+
+        /* Button */
+        .login-button {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+
+            padding: 16px;
+
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                90deg,
+                #00b8db,
+                #6366f1,
+                #a855f7
+            );
+
+            box-shadow:
+                0 10px 30px rgba(99,102,241,0.25);
+
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 15px 35px rgba(99,102,241,0.38);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        /* Register */
+        .register-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #8792aa;
+            font-size: 13px;
+        }
+
+        .register-text a {
+            color: #67e8f9;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-text a:hover {
+            color: #c084fc;
+        }
+
+        /* Footer */
+        .secure-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #66718b;
+            font-size: 11px;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-section {
+                padding: 45px 35px;
+            }
+
+            .login-section {
+                padding: 45px 30px;
+            }
+
+            .intro-section h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .top-bar {
+                padding: 20px;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .home-link {
+                padding: 9px 15px;
+                font-size: 13px;
+            }
+
+            .login-wrapper {
+                padding: 15px;
+            }
+
+            .login-container {
+                border-radius: 22px;
+            }
+
+            .intro-section {
+                padding: 35px 25px;
+            }
+
+            .login-section {
+                padding: 35px 22px;
+            }
+
+            .intro-section h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-bar">
+
+        <a href="{% url 'home' %}" class="brand">
+            <span class="brand-icon">🎬</span>
+            DeepRestore
+        </a>
+
+        <a href="{% url 'home' %}" class="home-link">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+    <!-- Login Area -->
+    <main class="login-wrapper">
+
+        <div class="login-container">
+
+            <!-- LEFT -->
+            <section class="intro-section">
+
+                <div class="video-icon">
+                    🎬
+                </div>
+
+                <h1>
+                    Deep Video<br>
+                    Restoration
+                </h1>
+
+                <p>
+                    Restore, enhance and bring degraded videos back to life
+                    using intelligent deep learning.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <span class="feature-icon">✨</span>
+                        AI-Powered Video Restoration
+                    </div>
+
+                    <div class="feature-item">
+                        <span class="feature-icon">🎨</span>
+                        Intelligent Image Colorization
+                    </div>
+
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        Fast Frame-Based Processing
+                    </div>
+
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span>
+                        Secure User Authentication
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT -->
+            <section class="login-section">
+
+                <div class="login-card">
+
+                    <h2>Welcome Back 👋</h2>
+
+                    <p class="login-subtitle">
+                        Sign in to continue to your dashboard
+                    </p>
+
+
+                    <!-- Django Messages -->
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+
+                    <!-- Login Form -->
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+
+                            <label for="username">
+                                Username
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    placeholder="Enter your username"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    onclick="togglePassword()"
+                                >
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <button type="submit" class="login-button">
+                            Sign In →
+                        </button>
+
+                    </form>
+
+
+                    <div class="register-text">
+                        Don't have an account?
+                        <a href="{% url 'register' %}">
+                            Create Account
+                        </a>
+                    </div>
+
+                    <div class="secure-text">
+                        🔒 Your account information is securely protected
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Password Toggle -->
+    <script>
+        function togglePassword() {
+
+            const password = document.getElementById("password");
+
+            if (password.type === "password") {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        }
+    </script>
+
+</body>
+</html>

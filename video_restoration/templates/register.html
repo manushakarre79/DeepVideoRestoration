@@ -1,0 +1,861 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeepRestore | Create Account</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 10% 20%,
+                    rgba(0, 229, 255, 0.22),
+                    transparent 30%),
+                radial-gradient(circle at 90% 15%,
+                    rgba(139, 92, 246, 0.28),
+                    transparent 30%),
+                radial-gradient(circle at 70% 90%,
+                    rgba(255, 0, 153, 0.22),
+                    transparent 35%),
+                #050816;
+
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ================= BACKGROUND ================= */
+
+        .register-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+        }
+
+        .glow-one {
+            width: 350px;
+            height: 350px;
+            background: #00e5ff;
+            top: -120px;
+            left: -100px;
+            animation: moveGlow 8s infinite alternate;
+        }
+
+        .glow-two {
+            width: 400px;
+            height: 400px;
+            background: #8b5cf6;
+            right: -150px;
+            top: 20%;
+            animation: moveGlow 10s infinite alternate-reverse;
+        }
+
+        .glow-three {
+            width: 300px;
+            height: 300px;
+            background: #ff1493;
+            bottom: -100px;
+            left: 35%;
+            animation: moveGlow 9s infinite alternate;
+        }
+
+        @keyframes moveGlow {
+
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(40px, -30px);
+            }
+
+            100% {
+                transform: translate(-30px, 40px);
+            }
+        }
+
+        /* ================= PAGE ================= */
+
+        .register-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .register-wrapper {
+            width: min(1050px, 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* ================= LEFT SIDE ================= */
+
+        .register-info {
+            padding: 30px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00e5ff,
+                    #8b5cf6,
+                    #ff3cac
+                );
+
+            box-shadow:
+                0 0 25px rgba(0, 229, 255, 0.35);
+        }
+
+        .brand span {
+            color: #00e5ff;
+        }
+
+        .register-info h1 {
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .register-info h1 span {
+            background:
+                linear-gradient(
+                    90deg,
+                    #00e5ff,
+                    #8b5cf6,
+                    #ff3cac
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .register-info > p {
+            color: #aeb8d0;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        /* ================= BENEFITS ================= */
+
+        .benefits {
+            display: grid;
+            gap: 14px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            padding: 14px 16px;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+        .benefit:hover {
+            transform: translateX(8px);
+            border-color: rgba(0,229,255,0.35);
+            background: rgba(0,229,255,0.06);
+        }
+
+        .benefit-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,0.2),
+                    rgba(139,92,246,0.2)
+                );
+
+            font-size: 18px;
+        }
+
+        .benefit span {
+            color: #d9e2f2;
+            font-size: 14px;
+        }
+
+        /* ================= REGISTER CARD ================= */
+
+        .register-card {
+
+            padding: 42px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20, 27, 55, 0.88),
+                    rgba(7, 12, 30, 0.88)
+                );
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.45);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .register-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+            height: 200px;
+
+            border-radius: 50%;
+
+            background: #00e5ff;
+
+            filter: blur(100px);
+
+            opacity: 0.10;
+
+            top: -100px;
+            right: -100px;
+        }
+
+        .card-heading {
+            margin-bottom: 28px;
+        }
+
+        .card-heading h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .card-heading p {
+            color: #8f9bb5;
+            font-size: 14px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            color: #cbd5e1;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            padding: 14px 45px 14px 16px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            background: rgba(255,255,255,0.055);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #65718a;
+        }
+
+        .input-wrapper input:focus {
+
+            border-color: #00e5ff;
+
+            background: rgba(0,229,255,0.05);
+
+            box-shadow:
+                0 0 0 3px rgba(0,229,255,0.08),
+                0 0 25px rgba(0,229,255,0.08);
+        }
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            cursor: pointer;
+
+            color: #7d89a1;
+
+            font-size: 17px;
+
+            user-select: none;
+        }
+
+        .password-toggle:hover {
+            color: #00e5ff;
+        }
+
+        .password-hint {
+
+            margin-top: 7px;
+
+            font-size: 11px;
+
+            color: #707d96;
+        }
+
+        /* ================= SUBMIT ================= */
+
+        .register-button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00c6ff,
+                    #7c3aed,
+                    #ff3cac
+                );
+
+            color: white;
+
+            font-weight: 700;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+            box-shadow:
+                0 12px 30px rgba(0,198,255,0.18);
+
+            transition: 0.3s;
+        }
+
+        .register-button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 18px 40px rgba(0,198,255,0.3);
+        }
+
+        /* ================= LOGIN LINK ================= */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            color: #8490a8;
+        }
+
+        .login-text a {
+
+            color: #5eefff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            color: #ffffff;
+        }
+
+        /* ================= HOME BUTTON ================= */
+
+        .back-home {
+
+            position: fixed;
+
+            top: 25px;
+            left: 25px;
+
+            padding: 10px 17px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.06);
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+
+            color: white;
+
+            border-color: #00e5ff;
+
+            background: rgba(0,229,255,0.08);
+        }
+
+        /* ================= MESSAGES ================= */
+
+        .messages {
+            margin-bottom: 18px;
+        }
+
+        .message {
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: rgba(255,60,172,0.08);
+
+            border: 1px solid rgba(255,60,172,0.25);
+
+            color: #ff9ad5;
+
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 850px) {
+
+            .register-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+
+            .register-info {
+                text-align: center;
+                padding: 10px;
+            }
+
+            .register-info > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .benefits {
+                text-align: left;
+            }
+
+            .back-home {
+                position: absolute;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .register-page {
+                padding: 70px 15px 30px;
+            }
+
+            .register-card {
+                padding: 28px 20px;
+            }
+
+            .register-info h1 {
+                font-size: 40px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="register-bg">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="glow glow-three"></div>
+    </div>
+
+
+    <!-- Back Home -->
+    <a href="{% url 'home' %}" class="back-home">
+        ← Back to Home
+    </a>
+
+
+    <div class="register-page">
+
+        <div class="register-wrapper">
+
+
+            <!-- ================= LEFT SIDE ================= -->
+
+            <div class="register-info">
+
+                <div class="brand">
+                    <div class="brand-icon">✦</div>
+
+                    <div>
+                        Deep<span>Restore</span>
+                    </div>
+                </div>
+
+
+                <h1>
+                    Create Your
+                    <span>AI Workspace.</span>
+                </h1>
+
+
+                <p>
+                    Join the Deep Video Restoration platform and
+                    transform old and degraded media using
+                    intelligent AI technology.
+                </p>
+
+
+                <div class="benefits">
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🎥
+                        </div>
+
+                        <span>
+                            Restore Degraded Videos
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🖼️
+                        </div>
+
+                        <span>
+                            Colorize Black & White Images
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            📊
+                        </div>
+
+                        <span>
+                            Track Your Processing History
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            🚀
+                        </div>
+
+                        <span>
+                            Simple & Modern AI Platform
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= REGISTER CARD ================= -->
+
+            <div class="register-card">
+
+                <div class="card-heading">
+
+                    <h2>
+                        Create Account ✨
+                    </h2>
+
+                    <p>
+                        Start your restoration journey today
+                    </p>
+
+                </div>
+
+
+                {% if messages %}
+
+                    <div class="messages">
+
+                        {% for message in messages %}
+
+                            <div class="message">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- Username -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Enter your username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="Create a password"
+                                required
+                            >
+
+                            <span
+                                class="password-toggle"
+                                onclick="togglePassword('password', this)"
+                            >
+                                👁
+                            </span>
+
+                        </div>
+
+                        <div class="password-hint">
+                            Use at least 8 characters.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                name="confirm_password"
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                required
+                            >
+
+                            <span
+                                class="password-toggle"
+                                onclick="togglePassword('confirmPassword', this)"
+                            >
+                                👁
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="register-button"
+                    >
+                        Create Account →
+                    </button>
+
+                </form>
+
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="{% url 'login' %}">
+                        Sign In
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function togglePassword(id, icon) {
+
+            const input = document.getElementById(id);
+
+            if (input.type === "password") {
+
+                input.type = "text";
+                icon.textContent = "🙈";
+
+            } else {
+
+                input.type = "password";
+                icon.textContent = "👁";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
