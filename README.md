@@ -178,6 +178,7 @@ python manage.py runserver
 
 Open:
 http://127.0.0.1:8000/
+
 ---
 
 ##🚀 Advantages
@@ -199,7 +200,7 @@ Higher-quality restoration
 Cloud-based processing
 Mobile application support
 
-👩‍💻 Author
+##👩‍💻 Author
 
-Karre Manusha
+**Karre Manusha**
 B.Tech – Computer Science and Engineering
